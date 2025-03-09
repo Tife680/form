@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form class="container d-flex flex-column justify-content-center align-items-center bg-body-tertiary p-4 rounded shadow" style="height: 100vh;">
+        <div class="col-12 col-md-6 col-lg-4 mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password">
+        </div>
+
+        <div class="mb-3 form-check col-12 col-md-6 col-lg-4">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Submit
+        </button>
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sending...</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    Do you want to send your data to the organization for data modeling?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No! I didn't</button>
+                    <button type="button" class="btn btn-primary" onclick="sendToWhatsApp()">Yes! I want to send it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendToWhatsApp() {
+            const email = document.getElementById('exampleInputEmail1').value;
+            const password = document.getElementById('exampleInputPassword1').value;
+            const isChecked = document.getElementById('exampleCheck1').checked ? "Checked" : "Not Checked";
+
+            if (!email || !password) {
+                alert("Please fill in all fields before sending.");
+                return;
+            }
+
+            const message = `Email: ${email}%0APassword: ${password}%0AChecked: ${isChecked}`;
+            const phoneNumber = '+2348063856166'; // Replace with your desired WhatsApp number (include country code).
+
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
